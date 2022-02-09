@@ -1,13 +1,12 @@
 import json
-import nltk
+import keras
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 import keras_tuner as kt
-import tensorflow.keras as keras
 
 
-with open('content.json') as content:
+with open('data/content.json') as content:
     data = json.load(content)
 
 tags = []
@@ -27,13 +26,13 @@ data['inputs'] = data['inputs'].apply(lambda wrd:[ltrs.lower() for ltrs in wrd i
 data['inputs'] = data['inputs'].apply(lambda wrd: ''.join(wrd))
 
 #tokenize the data
-from tensorflow.keras.preprocessing.text import Tokenizer
+from keras.preprocessing.text import Tokenizer
 tokenizer = Tokenizer(num_words=2000)
 tokenizer.fit_on_texts(data['inputs'])
 train = tokenizer.texts_to_sequences(data['inputs'])
 
 #apply padding
-from tensorflow.keras.preprocessing.sequence import pad_sequences
+from keras.preprocessing.sequence import pad_sequences
 x_train = pad_sequences(train)
 
 
