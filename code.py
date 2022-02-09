@@ -1,10 +1,9 @@
 import json
-import keras
 import numpy as np
 import pandas as pd
 import tensorflow as tf
 import keras_tuner as kt
-
+import tensorflow.keras as keras
 
 with open('data/content.json') as content:
     data = json.load(content)
